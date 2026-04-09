@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Professor</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f0f0f0;
+}
+
+.topo {
+  background: #8B0000;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+textarea {
+  width: 80%;
+  height: 120px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #073800;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0a5a00;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #8B0000;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+if (localStorage.getItem("tipo") !== "professor") {
+  window.location.href = "../index.html";
+}
+</script>
+
+<div class="topo">Painel do Professor</div>
+
+<div class="container">
+  <textarea id="materia" placeholder="Digite a matéria da semana"></textarea><br>
+  <button onclick="salvar()">Enviar</button>
+  <a href="../index.html">Sair</a>
+</div>
+
+<script>
+function salvar() {
+  let texto = document.getElementById("materia").value;
+
+  let materias = JSON.parse(localStorage.getItem("materias")) || [];
+  materias.push(texto);
+
+  localStorage.setItem("materias", JSON.stringify(materias));
+
+  alert("Matéria salva!");
+}
+</script>
+
+</body>
+</html>
