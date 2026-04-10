@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introdução ao CSS</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #662eb1, #4d4d4d);
+    }
+
+    /* NAVBAR IGUAL */
+    .navbar {
+        width: 100%;
+        background: white;
+        padding: 15px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+    .menu a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .menu a:hover {
+        color: #662eb1;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        padding: 40px 10px;
+    }
+
+    .content {
+        background: #fff;
+        max-width: 900px;
+        width: 100%;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    .code-box {
+        position: relative;
+        background: #f0f0f0;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+    }
+
+    pre {
+        margin: 0;
+        overflow-x: auto;
+    }
+
+    button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #ddd;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+</style>
+
+<script>
+function copiarTexto(id) {
+    const texto = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(texto);
+    alert("Código copiado!");
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- NAVBAR IGUAL -->
+<div class="navbar">
+    <div class="logo">📚 Study Academy</div>
+    <div class="menu">
+        <a href="inicio.html">Início</a>
+        <a href="#">Matérias</a>
+        <a href="#">Professores</a>
+        <a href="#">Contato</a>
+    </div>
+</div>
+
+<div class="container">
+<div class="content">
+
+<h1>Introdução ao Básico de CSS</h1>
+
+<p>
+CSS (Cascading Style Sheets) é uma linguagem de estilo usada para definir a aparência de documentos HTML ou XML. Ele permite controlar cores, fontes, espaçamentos, layouts e outros aspectos visuais de uma página web. O CSS é essencial para criar designs atraentes e responsivos.
+</p>
+
+<h2>Estrutura Básica de CSS</h2>
+
+<p>
+Um conjunto de regras CSS é composto por um seletor e um bloco de declarações.
+</p>
+
+<div class="code-box">
+<button onclick="copiarTexto('c1')">Copiar</button>
+<pre id="c1">
+p {
+color: red;
+font-size: 16px;
+}
+</pre>
+</div>
+
+<p>
+Neste exemplo: p é o seletor, color e font-size são propriedades, e red / 16px são valores.
+</p>
+
+<h2>Aplicando CSS</h2>
+
+<h3>Inline</h3>
+<div class="code-box">
+<button onclick="copiarTexto('c2')">Copiar</button>
+<pre id="c2">
+&lt;p style="color: blue;"&gt;Texto azul&lt;/p&gt;
+</pre>
+</div>
+
+<h3>Interno</h3>
+<div class="code-box">
+<button onclick="copiarTexto('c3')">Copiar</button>
+<pre id="c3">
+&lt;style&gt;
+p {
+color: green;
+}
+&lt;/style&gt;
+</pre>
+</div>
+
+<h3>Externo</h3>
+<div class="code-box">
+<button onclick="copiarTexto('c4')">Copiar</button>
+<pre id="c4">
+&lt;link rel="stylesheet" href="estilo.css"&gt;
+</pre>
+</div>
+
+<h2>Conceitos Fundamentais</h2>
+
+<h3>Seletores</h3>
+<ul>
+<li>p: Seleciona todos os parágrafos</li>
+<li>.classe: Seleciona por classe</li>
+<li>#id: Seleciona por ID</li>
+</ul>
+
+<h3>Box Model</h3>
+<ul>
+<li>Content</li>
+<li>Padding</li>
+<li>Border</li>
+<li>Margin</li>
+</ul>
+
+<div class="code-box">
+<button onclick="copiarTexto('c5')">Copiar</button>
+<pre id="c5">
+div {
+width: 200px;
+padding: 10px;
+border: 5px solid black;
+margin: 20px;
+}
+</pre>
+</div>
+
+<h2>Propriedades Comuns</h2>
+
+<ul>
+<li>color: red;</li>
+<li>background-color: yellow;</li>
+<li>font-size: 14px;</li>
+<li>margin: 10px;</li>
+<li>padding: 5px;</li>
+</ul>
+
+<h2>Layouts Modernos</h2>
+
+<h3>Flexbox</h3>
+<div class="code-box">
+<button onclick="copiarTexto('c6')">Copiar</button>
+<pre id="c6">
+.container {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+</pre>
+</div>
+
+<h3>Grid</h3>
+<div class="code-box">
+<button onclick="copiarTexto('c7')">Copiar</button>
+<pre id="c7">
+.container {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+}
+</pre>
+</div>
+
+<h2>Conclusão</h2>
+
+<p>
+O CSS é uma ferramenta poderosa para estilizar páginas web. Com ele, é possível criar designs modernos e responsivos.
+</p>
+
+</div>
+</div>
+
+</body>
+</html>

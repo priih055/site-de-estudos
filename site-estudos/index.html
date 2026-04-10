@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #662eb1, #4d4d4d);
+}
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  background: white;
+  padding: 15px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+.menu a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.menu a:hover {
+  color: #662eb1;
+}
+
+/* CENTRALIZAR CONTEÚDO */
+.main {
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+input, select {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 95%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #5a2070;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #7500a3;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">📚 Study Academy</div>
+  <div class="menu">
+    <a href="inicio.html">Início</a>
+    <a href="#">Matérias</a>
+    <a href="#">Professores</a>
+    <a href="#">Contato</a>
+  </div>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="main">
+  <div class="container">
+    <h2>Login</h2>
+
+    <select id="tipo">
+      <option value="aluno">Aluno</option>
+      <option value="professor">Professor</option>
+    </select>
+
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="senha" placeholder="Senha">
+
+    <button onclick="login()">Entrar</button>
+  </div>
+</div>
+
+<script>
+let usuarios = [
+  { tipo: "professor", email: "prof@gmail.com", senha: "1234" },
+  { tipo: "aluno", email: "aluno@gmail.com", senha: "1234" }
+];
+
+function login() {
+  let tipo = document.getElementById("tipo").value;
+  let email = document.getElementById("email").value.trim();
+  let senha = document.getElementById("senha").value.trim();
+
+  let user = usuarios.find(u =>
+    u.tipo === tipo && u.email === email && u.senha === senha
+  );
+
+  if (user) {
+    localStorage.setItem("tipo", tipo);
+
+    if (tipo === "professor") {
+      window.location.href = "paginas/professor.html";
+    } else {
+      window.location.href = "paginas/aluno.html";
+    }
+  } else {
+    alert("Login incorreto!");
+  }
+}
+</script>
+
+</body>
+</html>
