@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Academy</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #662eb1, #4d4d4d);
+}
+
+/* NAVBAR NOVA */
+.navbar {
+    width: 100%;
+    background: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #662eb1;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+}
+
+.menu a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    position: relative;
+    transition: 0.3s;
+}
+
+.menu a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: #662eb1;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: #662eb1;
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+.login-btn {
+    margin-left: 30px;
+    padding: 8px 18px;
+    background: #662eb1;
+    color: white !important;
+    border-radius: 20px;
+}
+
+.login-btn:hover {
+    background: #4a1f85;
+}
+
+/* HEADER */
+header img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.main {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #4facfe;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #007bff;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    width: 200px;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.card a {
+    text-decoration: none;
+    color: white;
+    background: #4facfe;
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.card a:hover {
+    background: #007bff;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR NOVA -->
+<div class="navbar">
+    <div class="logo">📚 Infinity Academy</div>
+    <div class="menu">
+        <a href="#">Início</a>
+        <a href="#">Matérias</a>
+        <a href="#">Professores</a>
+        <a href="#">Contato</a>
+        <a href="login.html" class="login-btn">Login</a>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header>
+    <img src="img/img13.png" alt="banner">
+</header>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="main">
+    <div class="container">
+        <h1>Bem-vindo!</h1>
+        <p>Aprenda de forma simples, organizada e eficiente.</p>
+        <a href="login.html" class="btn">Fazer Login</a>
+    </div>
+</div>
+
+<!-- CARDS -->
+<div class="cards">
+
+    <div class="card">
+        <h3>HTML</h3>
+        <p>Aprenda a estrutura dos sites.</p>
+        <a href="html.html">Estudar</a>
+    </div>
+
+    <div class="card">
+        <h3>CSS</h3>
+        <p>Deixe seu site bonito e estilizado.</p>
+        <a href="css.html">Estudar</a>
+    </div>
+
+    <div class="card">
+        <h3>Bootstrap</h3>
+        <p>Crie sites rápidos e responsivos.</p>
+        <a href="boots.html">Estudar</a>
+    </div>
+
+    <div class="card">
+        <h3>JavaScript</h3>
+        <p>Adicione interatividade ao site.</p>
+        <a href="js.html">Estudar</a>
+    </div>
+
+</div>
+
+</body>
+</html>

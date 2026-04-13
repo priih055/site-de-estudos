@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Painel Escolar</title>
+
+<style>
+* {
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #662eb1, #4d4d4d);
+    color: white;
+}
+
+/* NAVBAR CERTA */
+.navbar {
+    width: 100%;
+    background: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #662eb1;
+    font-size: 20px;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #555;
+}
+
+.login-btn {
+    background: #662eb1;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+/* CALENDÁRIO */
+.calendar {
+    max-width: 650px;
+    margin: 20px auto;
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 10px;
+}
+
+.day {
+    padding: 10px;
+    background: #eee;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.day.has-event {
+    background: #c7d2ff;
+}
+
+/* MODAIS CENTRALIZADOS */
+.modal {
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content {
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:10px;
+    width:300px;
+}
+
+/* PAINEL */
+.painel {
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* LISTA */
+.lista {
+    margin-top: 20px;
+}
+
+.item {
+    background: white;
+    color: black;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">📚 Infinity Academy</div>
+    <div class="menu">
+        <a href="#">Início</a>
+        <a href="#">Cursos</a>
+        <a href="#">Contato</a>
+        <a href="#" class="login-btn">Login</a>
+    </div>
+</div>
+
+<h1 style="text-align:center;">📅 Calendário Escolar</h1>
+
+<!-- CALENDÁRIO -->
+<div class="calendar">
+    <div style="display:flex;justify-content:space-between;">
+        <button onclick="prevMonth()">⬅</button>
+        <h2 id="monthYear"></h2>
+        <button onclick="nextMonth()">➡</button>
+    </div>
+
+    <div class="days" id="calendarDays"></div>
+</div>
+
+<!-- MODAL ALUNO -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h3 id="modalDate"></h3>
+        <p id="modalInfo"></p>
+        <button onclick="fecharModal()">Fechar</button>
+    </div>
+</div>
+
+<!-- MODAL PROFESSOR -->
+<div class="modal" id="modalForm">
+    <div class="modal-content">
+        <h3>Adicionar Matéria</h3>
+
+        <label>Curso:</label><br>
+        <select id="curso">
+            <option>Web Design</option>
+            <option>Logística</option>
+            <option>Contabilidade</option>
+            <option>Administração</option>
+        </select>
+
+        <br><br>
+
+        <label>Professor:</label><br>
+        <select id="professor">
+            <option>Ana</option>
+            <option>Carlos</option>
+            <option>João</option>
+            <option>Marina</option>
+            <option>Will</option>
+        </select>
+
+        <br><br>
+
+        <input type="text" id="materia" placeholder="Matéria">
+
+        <br><br>
+
+        <button onclick="salvar()">Salvar</button>
+        <button onclick="fecharForm()">Cancelar</button>
+    </div>
+</div>
+
+<!-- PAINEL -->
+<div class="painel">
+
+<h2>📚 Cursos</h2>
+<div class="cards">
+    <div class="card">Web Design</div>
+    <div class="card">Logística</div>
+    <div class="card">Contabilidade</div>
+    <div class="card">Administração</div>
+</div>
+
+<h2>📌 Matérias do Mês</h2>
+<div class="lista" id="listaMaterias"></div>
+
+</div>
+
+<script>
+let date = new Date();
+let isTeacher = false;
+let selectedKey = null;
+
+let senha = prompt("Senha professor:");
+if (senha === "1234") isTeacher = true;
+
+let dados = JSON.parse(localStorage.getItem("dados")) || {};
+
+function renderCalendar(){
+    let container = document.getElementById("calendarDays");
+    container.innerHTML="";
+
+    let year = date.getFullYear();
+    let month = date.getMonth();
+
+    document.getElementById("monthYear").innerText =
+    date.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+
+    let firstDay = new Date(year,month,1).getDay();
+    let total = new Date(year,month+1,0).getDate();
+
+    for(let i=0;i<firstDay;i++) container.innerHTML+="<div></div>";
+
+    for(let d=1;d<=total;d++){
+        let key = `${year}-${month}-${d}`;
+        let info = dados[key];
+
+        let div = document.createElement("div");
+        div.className="day";
+        if(info) div.classList.add("has-event");
+
+        div.innerHTML = `<b>${d}</b><br>${info ? info.materia : ""}`;
+
+        div.onclick=()=>{
+            if(isTeacher){
+                selectedKey = key;
+                document.getElementById("modalForm").style.display="flex";
+            } else {
+                abrirModal(d, info);
+            }
+        };
+
+        container.appendChild(div);
+    }
+
+    atualizarLista();
+}
+
+function salvar(){
+    let curso = document.getElementById("curso").value;
+    let professor = document.getElementById("professor").value;
+    let materia = document.getElementById("materia").value;
+
+    if(materia){
+        dados[selectedKey] = {curso, professor, materia};
+    }
+
+    localStorage.setItem("dados", JSON.stringify(dados));
+    fecharForm();
+    renderCalendar();
+}
+
+function fecharForm(){
+    document.getElementById("modalForm").style.display="none";
+}
+
+function atualizarLista(){
+    let lista = document.getElementById("listaMaterias");
+    lista.innerHTML="";
+
+    Object.values(dados).forEach(d=>{
+        let div=document.createElement("div");
+        div.className="item";
+        div.innerText = `${d.materia} - ${d.curso} (${d.professor})`;
+        lista.appendChild(div);
+    });
+}
+
+function abrirModal(d, info){
+    document.getElementById("modal").style.display="flex";
+    document.getElementById("modalDate").innerText="Dia "+d;
+    document.getElementById("modalInfo").innerText =
+    info ? `${info.materia} - ${info.professor}` : "Sem matéria";
+}
+
+function fecharModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+function prevMonth(){date.setMonth(date.getMonth()-1);renderCalendar();}
+function nextMonth(){date.setMonth(date.getMonth()+1);renderCalendar();}
+
+renderCalendar();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introdução ao HTML</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #662eb1, #4d4d4d);
+        overflow-x: hidden;
+    }
+
+    /* NAVBAR (IGUAL AO PRIMEIRO) */
+    .navbar {
+        width: 100%;
+        background: white;
+        padding: 10px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .logo {
+        font-size: 22px;
+        font-weight: bold;
+        color: #662eb1;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .menu a {
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        position: relative;
+        transition: 0.3s;
+    }
+
+    .menu a::after {
+        content: "";
+        width: 0%;
+        height: 2px;
+        background: #662eb1;
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        transition: 0.3s;
+    }
+
+    .menu a:hover {
+        color: #662eb1;
+    }
+
+    .menu a:hover::after {
+        width: 100%;
+    }
+
+    .login-btn {
+        padding: 8px 18px;
+        background: #662eb1;
+        color: white !important;
+        border-radius: 20px;
+    }
+
+    .login-btn:hover {
+        background: #4a1f85;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        padding: 40px 10px;
+    }
+
+    .content {
+        background: #fff;
+        max-width: 900px;
+        width: 100%;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    .links a {
+        display: block;
+        color: #0066cc;
+        text-decoration: none;
+        margin-bottom: 5px;
+    }
+
+    .links a:hover {
+        text-decoration: underline;
+    }
+
+    .code-box {
+        position: relative;
+        background: #f0f0f0;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+    }
+
+    pre {
+        margin: 0;
+        overflow-x: auto;
+    }
+
+    button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #ddd;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+</style>
+
+<script>
+function copiarTexto(id) {
+    const texto = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(texto);
+    alert("Código copiado!");
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">📚 Infinity Academy</div>
+    <div class="menu">
+        <a href="inicio.html">Início</a>
+        <a href="#">Matérias</a>
+        <a href="#">Professores</a>
+        <a href="#">Contato</a>
+        <a href="login.html" class="login-btn">Login</a>
+    </div>
+</div>
+
+<div class="container">
+<div class="content">
+
+<h1>Introdução ao HTML</h1>
+
+<div class="links">
+    <a href="https://www.w3schools.com/html/" target="_blank">HTML Tutorial - W3Schools</a>
+    <a href="https://developer.mozilla.org/pt-BR/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content" target="_blank">HTML básico - MDN</a>
+</div>
+
+<p>
+HTML (HyperText Markup Language) é a linguagem padrão usada para estruturar e exibir conteúdo na web.
+</p>
+
+<h2>Estrutura Básica de um Documento HTML</h2>
+
+<div class="code-box">
+<button onclick="copiarTexto('codigo1')">Copiar</button>
+<pre id="codigo1">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Minha Página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Bem-vindo ao HTML&lt;/h1&gt;
+&lt;p&gt;Este é um parágrafo de exemplo.&lt;/p&gt;
+&lt;a href="https://www.exemplo.com"&gt;Clique aqui&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+
+<h2>Explicação dos Elementos</h2>
+
+<ul>
+<li><strong>&lt;!DOCTYPE html&gt;</strong>: Define o tipo do documento</li>
+<li><strong>&lt;html&gt;</strong>: Elemento principal</li>
+<li><strong>&lt;head&gt;</strong>: Metadados</li>
+<li><strong>&lt;body&gt;</strong>: Conteúdo visível</li>
+</ul>
+
+<h2>Elementos Comuns do HTML</h2>
+
+<h3>Cabeçalhos</h3>
+
+<div class="code-box">
+<button onclick="copiarTexto('codigo2')">Copiar</button>
+<pre id="codigo2">
+&lt;h1&gt;Título Principal&lt;/h1&gt;
+&lt;h2&gt;Subtítulo&lt;/h2&gt;
+</pre>
+</div>
+
+<h3>Parágrafos</h3>
+
+<div class="code-box">
+<button onclick="copiarTexto('codigo3')">Copiar</button>
+<pre id="codigo3">
+&lt;p&gt;Este é um parágrafo simples.&lt;/p&gt;
+</pre>
+</div>
+
+<h3>Links</h3>
+
+<div class="code-box">
+<button onclick="copiarTexto('codigo4')">Copiar</button>
+<pre id="codigo4">
+&lt;a href="https://www.exemplo.com"&gt;Visite nosso site&lt;/a&gt;
+</pre>
+</div>
+
+<h3>Imagens</h3>
+
+<div class="code-box">
+<button onclick="copiarTexto('codigo5')">Copiar</button>
+<pre id="codigo5">
+&lt;img src="imagem.jpg" alt="Descrição da imagem"&gt;
+</pre>
+</div>
+
+<h3>Listas</h3>
+
+<div class="code-box">
+<button onclick="copiarTexto('codigo6')">Copiar</button>
+<pre id="codigo6">
+&lt;ul&gt;
+&lt;li&gt;Item 1&lt;/li&gt;
+&lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+</div>
+
+<h2>Boas Práticas</h2>
+
+<ul>
+<li>Sempre feche as tags</li>
+<li>Use <strong>alt</strong> em imagens</li>
+<li>Organize com cabeçalhos</li>
+</ul>
+
+</div>
+</div>
+
+</body>
+</html>
